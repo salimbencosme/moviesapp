@@ -1,0 +1,24 @@
+<div class="container" ng-controller="authenticationController">
+    <center>
+    <img src="./app/assets/img/rental.gif" class="img-thumbnail logoImg" alt="Movie logo">
+    <h2 class="welcome text-center">MOVIES' RENTAL</h2>
+    </center>
+
+    <div class="card card-container">
+            
+        <h2 class='login_title text-center'>Login</h2>
+        <hr>
+
+        <form name="cForm" class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <p class="input_title">Username</p>
+            <input type="text" id="inputEmail" class="login_box" placeholder="" required autofocus    oninvalid="this.setCustomValidity('You must enter your username')" oninput="setCustomValidity('')" ng-model="username"  />
+            <p class="input_title">Password</p>
+            <input type="password" id="inputPassword" class="login_box" placeholder="" required  oninvalid="this.setCustomValidity('You must enter your user password')" oninput="setCustomValidity('')" ng-model="password" />
+            <button  class="btn btn-lg btn-primary btnLogin" type="submit" ng-disabled="!cForm.$valid" ng-click="authenticate()" >Iniciar sesión</button>
+        </form>
+    </div>
+</div>
+
+
+

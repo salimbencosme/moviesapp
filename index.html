@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="moviesModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Movies' Rental</title>
+
+    <link rel="stylesheet"  href="./app/assets/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./app/assets/css/style.css">
+    <link rel="stylesheet" href="./app/assets/lib/angular-ui-notification/dist/angular-ui-notification.css">
+
+    <script src="./app/assets/lib/jquery/dist/jquery.min.js"></script>
+    <script src="./app/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./app/assets/lib/angular/angular.js"></script>
+    <script src="./app/assets/lib/angular-route/angular-route.js"></script>
+    <script src="./app/assets/lib/angular-ui-notification/dist/angular-ui-notification.js"></script>
+
+    <script src="./app/assets/env.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/routes.js"></script>
+    <script src="./app/components/utils/service.js"></script>
+    <script src="./app/components/authentication/service.js"></script>
+    <script src="./app/components/manage_rentals/service.js"></script>
+    <script src="./app/components/movie_rent/service.js"></script>
+    <script src="./app/components/authentication/controller.js"></script>
+    <script src="./app/components/manage_rentals/controller.js"></script>
+    <script src="./app/components/movie_rent/controller.js"></script>
+    
+
+</head>
+<body>
+
+<div ng-show="showTemplate === 1" class="backGroundWhite">
+    <nav class="navbar navbar-light bg-faded navStyle">
+        <a class="navbar-brand" href="#">
+            <label id="aplicacionName">MOVIES' RENTAL</label>
+        </a>
+    <div class="pull-right">
+        <div class="pull-left" id="loggedUser">{{userNameLogged | uppercase}}</div>
+        <div class="logIconPosition"><a ng-click="logout()"><span class="glyphicon glyphicon-log-out logOutButtton"  /></a></div>
+    </div>
+    </nav>
+    <div >
+        <div id="mainPanel" class="panel">
+            <div class="panel-body" >   
+                    <div ng-view ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="showTemplate === 0">
+    <div ng-view></div>
+</div>
+</body>
+</html>

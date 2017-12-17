@@ -1,0 +1,130 @@
+<div id="mainPanel" class="panel">
+    <div class="panel-body">
+        <div class="col-xs-12">
+
+            <div class="col-xs-6">
+
+                <legend>Orders' list</legend>
+
+                <table class="table table-striped table-inverse tableStyle " ng-show="orderList.length !=0 ">
+                    <thead>
+                        <tr>
+                            <th># Order</th>
+                            <th>Rented on</th>
+                            <th>Movie(s)</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="o in orderList ">
+                            <th scope="row ">{{o[0].rent.rentid}}</th>
+                            <th>{{o[0].rent.renteddate | date : "dd MMM y hh:mm a " }}</th>
+                            <td>
+                                <label ng-repeat="m in o ">&#9726;{{m.movie.name}}({{m.movie.year}})
+                                    <br/>
+                                </label>
+                            </td>
+                            <th>{{o[0].rent.totalamount | currency}}</th>
+                            <th>
+                                <center>
+                                    <button type="button" class="btn btn-primary buttonAdd btn-red-black " ng-click="loadDetails(o)">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </button>
+                                </center>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                </fieldset>
+
+            </div>
+
+            <div class="col-xs-6">
+
+                <legend>Details</legend>
+                <div ng-show="showDatails">
+                    <ul>
+                        <li>
+                            <label># Order: </label>{{rowSelected[0].rent.rentid}}</li>
+                        <li>
+                            <label>Rented on: </label>{{rowSelected[0].rent.renteddate | date : "dd MMM y hh:mm a "}}</li>
+                        <li>
+                            <label>Amount: </label>{{rowSelected[0].rent.totalamount | currency}}</li>
+                        <li>
+                            <label>The order belongs to: </label>{{rowSelected[0].rent.user.fullname}}</li>
+                    </ul>
+
+                    <div ng-show="rowSelected[0].rent.haspenalty">
+                        <center>
+                            <legend>
+                                <span class="glyphicon glyphicon-warning-sign warningIcon"></span>
+                            </legend>
+                            <label id="msjorder">This order has a penalty of 5% of the agreed amount. Because the movies returned after 30 days.</label>
+                        </center>
+                    </div>
+
+
+                </div>
+                <div ng-show="showDatails === false">
+                    <label id="msjorder">An order has not been selected...</label>
+                </div>
+                <hr/> Total Amount: {{newTotalAmount | currency}}
+
+                <br/>
+                <br/>
+                <div class="pull-right">
+                    <button class="btn btn-lg btn-primary btnLogin" ng-click="cleanDetails()">Clean details</button>
+                    <button ng-disabled="!showDatails" class="btn btn-lg btn-primary btnLogin" ng-click="closeOrder()">Close order</button>
+                </div>
+
+
+                </fieldset>
+
+
+
+            </div>
+
+
+            <div class="col-xs-12 ">
+
+                <legend>Record</legend>
+                <table class="table table-striped table-inverse tableStyle " ng-show="processedOrderList.length !=0 ">
+                    <thead>
+                        <tr>
+                            <th># Order</th>
+                            <th>Rented to</th>
+                            <th>Rented on</th>
+                            <th>Delivered</th>
+                            <th>Movie(s)</th>
+                            <th>Total amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="o in processedOrderList ">
+                            <th scope="row ">{{o[0].rent.rentid}}</th>
+                            <th>{{o[0].rent.user.fullname}}</th>
+                            <th>{{o[0].rent.renteddate | date : "dd MMM y hh:mm a " }}</th>
+                            <th>{{o[0].rent.delivereddate | date : "dd MMM y hh:mm a " }}</th>
+                            <td>
+                                <label ng-repeat="m in o ">&#9726;{{m.movie.name}}({{m.movie.year}})
+                                    <br/>
+                                </label>
+                            </td>
+                            <th>{{o[0].rent.totalamount | currency}}</th>
+                            <th>
+                                <center ng-show="{{o[0].rent.haspenalty}}">
+                                    <span class="glyphicon glyphicon-warning-sign warningIcon"></span>
+                                </center>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
